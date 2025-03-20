@@ -2,9 +2,9 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { CreateDiretoDto } from './dto/create-direto.dto';
 import { UpdateDiretoDto } from './dto/update-direto.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { ErrorClienteType } from './entities/error.cliente.entity';
 import { plainToClass } from 'class-transformer';
 import { ClienteDireto } from './entities/cliente.direto.entity';
+import { ErrorClienteDiretoType } from './entities/error.cliente.entity';
 
 @Injectable()
 export class DiretoService {
@@ -19,7 +19,7 @@ export class DiretoService {
           },
         });
       if (!request) {
-        const retorno: ErrorClienteType = {
+        const retorno: ErrorClienteDiretoType = {
           message: 'Erro ao buscar Clientes',
         };
         throw new HttpException(retorno, 400);
@@ -28,7 +28,7 @@ export class DiretoService {
       return request.map((item) => plainToClass(ClienteDireto, item));
     } catch (error) {
       console.log(error);
-      const retorno: ErrorClienteType = {
+      const retorno: ErrorClienteDiretoType = {
         message: error.message ? error.message : 'ERRO DESCONHECIDO',
       };
       throw new HttpException(retorno, 400);
@@ -46,7 +46,7 @@ export class DiretoService {
           },
         });
       if (!request) {
-        const retorno: ErrorClienteType = {
+        const retorno: ErrorClienteDiretoType = {
           message: 'Erro ao buscar Cliente',
         };
         throw new HttpException(retorno, 400);
@@ -54,7 +54,7 @@ export class DiretoService {
       return plainToClass(ClienteDireto, request);
     } catch (error) {
       console.log(error);
-      const retorno: ErrorClienteType = {
+      const retorno: ErrorClienteDiretoType = {
         message: error.message ? error.message : 'ERRO DESCONHECIDO',
       };
       throw new HttpException(retorno, 400);
@@ -72,7 +72,7 @@ export class DiretoService {
         data: updateDiretoDto,
       });
       if (!request) {
-        const retorno: ErrorClienteType = {
+        const retorno: ErrorClienteDiretoType = {
           message: 'Erro ao atualizar Cliente',
         };
         throw new HttpException(retorno, 400);
@@ -80,7 +80,7 @@ export class DiretoService {
       return plainToClass(ClienteDireto, request);
     } catch (error) {
       console.log(error);
-      const retorno: ErrorClienteType = {
+      const retorno: ErrorClienteDiretoType = {
         message: error.message ? error.message : 'ERRO DESCONHECIDO',
       };
       throw new HttpException(retorno, 400);
@@ -100,7 +100,7 @@ export class DiretoService {
         },
       });
       if (!request) {
-        const retorno: ErrorClienteType = {
+        const retorno: ErrorClienteDiretoType = {
           message: 'Erro ao desativar Cliente',
         };
         throw new HttpException(retorno, 400);
@@ -108,7 +108,7 @@ export class DiretoService {
       return plainToClass(ClienteDireto, request);
     }catch (error) {
       console.log(error);
-      const retorno: ErrorClienteType = {
+      const retorno: ErrorClienteDiretoType = {
         message: error.message ? error.message : 'ERRO DESCONHECIDO',
       };
       throw new HttpException(retorno, 400);
