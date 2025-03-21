@@ -7,7 +7,7 @@ import { ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
 import { ErrorClienteDiretoType } from './entities/error.cliente.entity';
 import { ClienteDireto } from './entities/cliente.direto.entity';
 
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 @ApiBearerAuth()
 @Controller('direto')
 export class DiretoController {
