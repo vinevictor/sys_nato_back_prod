@@ -13,19 +13,21 @@ export class DiretoService {
   async findAll() {
     try {
       const request =
-        await this.prismaService.nato_direto_solicitacoes.findMany({
-          orderBy: {
-            dt_solicitacao: 'desc',
-          },
-        });
+      await this.prismaService.nato_direto_solicitacoes.findMany({
+        orderBy: {
+          dt_solicitacao: 'desc',
+        },
+      });
+      console.log("🚀 ~ DiretoService ~ findAll ~ request:", request)
       if (!request) {
         const retorno: ErrorClienteDiretoType = {
           message: 'Erro ao buscar Clientes',
         };
         throw new HttpException(retorno, 400);
       }
-
-      return request.map((item) => plainToClass(ClienteDireto, item));
+      const teste = request.map((item) => plainToClass(ClienteDireto, item, {excludeExtraneousValues: true}));
+      console.log("🚀 ~ DiretoService ~ findAll ~ teste:", teste)
+      return request.map((item) => plainToClass(ClienteDireto, item, {excludeExtraneousValues: true}));
     } catch (error) {
       console.log(error);
       const retorno: ErrorClienteDiretoType = {
