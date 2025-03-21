@@ -33,7 +33,7 @@ export class DiretoService {
       };
       throw new HttpException(retorno, 400);
     }finally{
-       this.prismaService.$disconnect
+      await this.prismaService.$disconnect()
     }
   }
 
@@ -59,7 +59,7 @@ export class DiretoService {
       };
       throw new HttpException(retorno, 400);
     }finally{
-      this.prismaService.$disconnect
+      await this.prismaService.$disconnect()
     }
   }
 
@@ -85,7 +85,7 @@ export class DiretoService {
       };
       throw new HttpException(retorno, 400);
     }finally{
-      this.prismaService.$disconnect
+      await this.prismaService.$disconnect()
     }
   }
 
@@ -113,7 +113,7 @@ export class DiretoService {
       };
       throw new HttpException(retorno, 400);
     }finally{
-      this.prismaService.$disconnect
+      await this.prismaService.$disconnect()
     }
   }
 }

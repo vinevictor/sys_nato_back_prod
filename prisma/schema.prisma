@@ -336,6 +336,7 @@ model nato_empresas {
   fantasia                 String?                    @db.VarChar(100)
   status                   Boolean                    @default(true)
   valor_cert               Float?                     @db.Float
+
   nato_direto_solicitacoes nato_direto_solicitacoes[]
   nato_empreendimento      nato_empreendimento[]
 }
@@ -895,15 +896,32 @@ model nato_direto_solicitacoes {
   qrcode              String?              @db.Text
   txid                String?              @db.VarChar(100)
   valor               Float?               @db.Float
-  nato_empresas       nato_empresas?       @relation(fields: [construtora], references: [id], map: "nato_direto_clientes_construtora_fkey")
-  nato_user           nato_user?           @relation(fields: [corretor], references: [id], map: "nato_direto_clientes_corretor_fkey")
-  nato_empreendimento nato_empreendimento? @relation(fields: [empreedimento], references: [id], map: "nato_direto_clientes_empreedimento_fkey")
-  nato_financeiro     nato_financeiro?     @relation(fields: [financeiro], references: [id], map: "nato_direto_clientes_financeiro_fkey")
-  fcweb               fcweb?               @relation(fields: [id_fcw], references: [id], map: "nato_direto_clientes_id_fcw_fkey")
+
+  nato_empresas       nato_empresas?       @relation(fields: [construtora], references: [id], map: "nato_direto_clientes_construtora_fkey", onDelete: SetNull)
+  nato_user           nato_user?           @relation(fields: [corretor], references: [id], map: "nato_direto_clientes_corretor_fkey", onDelete: SetNull)
+  nato_empreendimento nato_empreendimento? @relation(fields: [empreedimento], references: [id], map: "nato_direto_clientes_empreedimento_fkey", onDelete: SetNull)
+  nato_financeiro     nato_financeiro?     @relation(fields: [financeiro], references: [id], map: "nato_direto_clientes_financeiro_fkey", onDelete: SetNull)
+  fcweb               fcweb?               @relation(fields: [id_fcw], references: [id], map: "nato_direto_clientes_id_fcw_fkey", onDelete: SetNull)
+
+  nato_direto_tags    nato_direto_tags[]
 
   @@index([construtora], map: "idx_construtora")
   @@index([corretor], map: "idx_corretor")
   @@index([empreedimento], map: "idx_empreedimento")
   @@index([id_fcw], map: "idx_id_fcw")
   @@index([financeiro], map: "nato_direto_clientes_financeiro_fkey")
+
+
+}
+
+model nato_direto_tags {
+  id                      Int                       @id @default(autoincrement())
+  solicitacao             Int                       @unique
+  createdAt               DateTime                  @default(now()) @db.DateTime(0)
+  updatedAt               DateTime                  @updatedAt
+  tags                    String?                   @db.Text
+
+  nato_direto_solicitacoes nato_direto_solicitacoes @relation(fields: [solicitacao], references: [id], map: "nato_direto_tags_solicitacao_fkey", onDelete: Cascade)
+
+  @@index([solicitacao], map: "idx_solicitacao")
 }
