@@ -22,6 +22,7 @@ import { ConstrutorasModule } from './construtoras/construtoras.module';
 import { GetInfosModule } from './get-infos/get-infos.module';
 import { SuporteModule } from './suporte/suporte.module';
 import { DiretoModule } from './direto/direto.module';
+import { DiretoTagsModule } from './direto-tags/direto-tags.module';
 
 
 @Module({
@@ -47,7 +48,8 @@ import { DiretoModule } from './direto/direto.module';
     ConstrutorasModule,
     GetInfosModule,
     SuporteModule,
-    DiretoModule
+    DiretoModule,
+    DiretoTagsModule
   ],
   controllers: [UserController, AuthController, UserController2],
   providers: [UserService, AuthService],
