@@ -1,7 +1,7 @@
 import { ApiResponseProperty } from '@nestjs/swagger';
-import { Exclude, Expose } from 'class-transformer';
+import { Expose } from 'class-transformer';
 
-export class ClienteDireto {
+export class ClienteDiretoUnico {
   @ApiResponseProperty({ type: Number })
   @Expose()
   id: number;
@@ -40,22 +40,22 @@ export class ClienteDireto {
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   ass_doc: string;
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   link_doc: string;
 
 
   @ApiResponseProperty({ type: Number })
-  @Exclude()
+  @Expose()
   id_fcw: number;
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   obs: string;
 
 
@@ -65,12 +65,12 @@ export class ClienteDireto {
 
 
   @ApiResponseProperty({ type: Number })
-  @Exclude()
+  @Expose()
   empreedimento: number;
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   cnh: string;
 
   @ApiResponseProperty({ type: Boolean })
@@ -78,12 +78,12 @@ export class ClienteDireto {
   ativo: boolean;
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   uploadCnh: string;
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   relacionamento: string;
   
 
@@ -92,7 +92,7 @@ export class ClienteDireto {
   createdAt: Date;
 
   @ApiResponseProperty({ type: Date })
-  @Exclude()
+  @Expose()
   updatedAt: Date;
 
   
@@ -107,16 +107,16 @@ export class ClienteDireto {
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   logDelete: string;
   
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   status_aprovacao: string;
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   Andamento: string;
 
 
@@ -134,11 +134,11 @@ export class ClienteDireto {
   dt_agendamento: string;
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   mult_link: string;
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   mult_ass_doc: string;
 
   @ApiResponseProperty({ type: Date })
@@ -150,19 +150,19 @@ export class ClienteDireto {
   status_pgto: string;
 
   @ApiResponseProperty({ type: Number })
-  @Exclude()
+  @Expose()
   valorcd: number;
   
   @ApiResponseProperty({ type: Number })
-  @Exclude()
+  @Expose()
   situacao_pg: number;
 
   @ApiResponseProperty({ type: Number })
-  @Exclude()
+  @Expose()
   freqSms: number;
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   docSuspenso: string;
 
   @ApiResponseProperty({ type: Boolean })
@@ -174,11 +174,11 @@ export class ClienteDireto {
   dt_criacao_now: Date;
   
   @ApiResponseProperty({ type: Boolean })
-  @Exclude()
+  @Expose()
   statusAtendimento: boolean;
 
   @ApiResponseProperty({ type: Boolean })
-  @Exclude()
+  @Expose()
   pause: boolean;
   
   @ApiResponseProperty({ type: String })
@@ -205,7 +205,7 @@ export class ClienteDireto {
   @Expose()
   solicitacao: number;
 
-  constructor(partial: Partial<ClienteDireto>) {
+  constructor(partial: Partial<ClienteDiretoUnico>) {
     Object.assign(this, partial);
   }
 }
