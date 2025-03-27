@@ -18,6 +18,7 @@ export class DiretoService {
           dt_solicitacao: 'desc',
         },
       });
+      console.log("🚀 ~ DiretoService ~ findAll ~ request:", request)
       if (!request) {
         const retorno: ErrorClienteDiretoType = {
           message: 'Erro ao buscar Clientes',

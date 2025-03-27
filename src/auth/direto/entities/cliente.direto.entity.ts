@@ -50,12 +50,12 @@ export class ClienteDireto {
 
 
   @ApiResponseProperty({ type: Number })
-  @Exclude()
+  @Expose()
   id_fcw: number;
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   obs: string;
 
 
@@ -107,7 +107,7 @@ export class ClienteDireto {
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   logDelete: string;
   
   @ApiResponseProperty({ type: String })
@@ -116,7 +116,7 @@ export class ClienteDireto {
 
 
   @ApiResponseProperty({ type: String })
-  @Exclude()
+  @Expose()
   Andamento: string;
 
 
@@ -204,6 +204,10 @@ export class ClienteDireto {
   @ApiResponseProperty({ type: String })
   @Expose()
   solicitacao: number;
+
+  @ApiResponseProperty({ type: Date })
+  @Expose()
+  hr_agendamento: Date;
 
   constructor(partial: Partial<ClienteDireto>) {
     Object.assign(this, partial);
