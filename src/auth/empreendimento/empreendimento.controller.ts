@@ -43,7 +43,7 @@ export class EmpreendimentoController {
     } catch (error) {
       return error;
     }
-  }
+  }   
 
 
 

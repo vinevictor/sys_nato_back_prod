@@ -23,7 +23,6 @@ export class ConstrutorasController {
   }
 
   @Put(':id')
-
   update(@Param('id', new ParseIntPipe()) id: number, @Body() updateConstrutoraDto: UpdateConstrutoraDto) {
     return this.construtorasService.update(id, updateConstrutoraDto);
   }

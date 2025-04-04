@@ -7,30 +7,30 @@ import { UpdateSuporteDto } from './dto/update-suporte.dto';
 export class SuporteController {
   constructor(private readonly suporteService: SuporteService) {}
 
-  @Post()
-  create(@Body() createSuporteDto: CreateSuporteDto) {
-    return this.suporteService.create(createSuporteDto);
-  }
+  // @Post()
+  // create(@Body() createSuporteDto: CreateSuporteDto) {
+  //   return this.suporteService.create(createSuporteDto);
+  // }
 
-  @Get(':id')
-  findAllById(@Param('id', new ParseIntPipe()) id: number) {
-    return this.suporteService.findAllById(id);
-  }
+  // @Get(':id')
+  // findAllById(@Param('id', new ParseIntPipe()) id: number) {
+  //   return this.suporteService.findAllById(id);
+  // }
 
-  @Get('/getone/:id')
-  findOne(@Param('id') id: string) {
-    return this.suporteService.findOne(+id);
-  }
+  // @Get('/getone/:id')
+  // async findOne(@Param('id') id: string) {
+  //   return await this.suporteService.findOne(+id);
+  // }
 
-  @Put(':id')
-  update(@Param('id', new ParseIntPipe()) id: number, @Body() updateSuporteDto: UpdateSuporteDto) {
-    return this.suporteService.update(id, updateSuporteDto);
-  }
+  // @Put(':id')
+  // update(@Param('id', new ParseIntPipe()) id: number, @Body() updateSuporteDto: UpdateSuporteDto) {
+  //   return this.suporteService.update(id, updateSuporteDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id', new ParseIntPipe()) id: number) {
-    return this.suporteService.remove(id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id', new ParseIntPipe()) id: number) {
+  //   return this.suporteService.remove(id);
+  // }
 
   @Put('/deleteimg/:id')
   deleteImg(@Param('id', new ParseIntPipe()) id: number, @Body() index: number) {

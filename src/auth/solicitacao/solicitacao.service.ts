@@ -817,18 +817,19 @@ export class SolicitacaoService {
   }
 
   async Atendimento(id: number, user: any) {
-    try{
-      const status = await this.prismaService.nato_solicitacoes_certificado.findUnique({
-        where: {
-          id: id,
-        },
-        select: {
-          statusAtendimento: true,
-          logDelete: true,
-        },
-      })
+    try {
+      const status =
+        await this.prismaService.nato_solicitacoes_certificado.findUnique({
+          where: {
+            id: id,
+          },
+          select: {
+            statusAtendimento: true,
+            logDelete: true,
+          },
+        });
 
-       await this.prismaService.nato_solicitacoes_certificado.update({
+      await this.prismaService.nato_solicitacoes_certificado.update({
         where: {
           id: id,
         },
@@ -836,86 +837,87 @@ export class SolicitacaoService {
           statusAtendimento: !status.statusAtendimento,
           logDelete: `${status.logDelete}\nO usuário: ${user?.nome}, id: ${user?.id} ${status.statusAtendimento ? 'cancelou o atendimento' : 'iniciou o atendimento'} a esse registro em: ${new Date().toLocaleDateString('pt-BR')} as ${new Date().toLocaleTimeString('pt-BR')}`,
         },
-      })
+      });
 
-      return !status.statusAtendimento
-    }catch(error){
+      return !status.statusAtendimento;
+    } catch (error) {
       return error;
-    }finally{
+    } finally {
       this.prismaService.$disconnect;
     }
   }
 
   async PostTags(data: any, user: any) {
     try {
-      const tags = data.tags
-      
-      if(data){
+      const tags = data.tags;
+
+      if (data) {
         for (let i = 0; i < tags.length; i++) {
           const tag = tags[i];
-          if (tag.label && user.hierarquia === "ADM") {
+          if (tag.label && user.hierarquia === 'ADM') {
             const verifique = await this.prismaService.nato_tags.findFirst({
               where: {
                 descricao: tag.label,
                 solicitacao: data.solicitacao,
-              }
+              },
             });
             const filtro = verifique ? false : true;
-        if (filtro) {
-          await this.prismaService.nato_tags.create({
-            data: {
-              descricao: tag.label,
-              solicitacao: data.solicitacao,
+            if (filtro) {
+              await this.prismaService.nato_tags.create({
+                data: {
+                  descricao: tag.label,
+                  solicitacao: data.solicitacao,
+                },
+              });
             }
-          });
+          }
         }
       }
-      }
-    }
     } catch (error) {
       return error;
-    }finally{
+    } finally {
       this.prismaService.$disconnect;
     }
   }
 
   async app(data: CheckCpfDto) {
-    try{
-      const solicitacao = await this.prismaService.nato_solicitacoes_certificado.findFirst({
-        where:{
-          cpf: data.cpf,
-        },
-        select:{
-          id: true,
-          email: true,
-          nome: true,
-          cpf: true,
-          Andamento: true
-        }
-      })
+    try {
+      const solicitacao =
+        await this.prismaService.nato_solicitacoes_certificado.findFirst({
+          where: {
+            cpf: data.cpf,
+          },
+          select: {
+            id: true,
+            email: true,
+            nome: true,
+            cpf: true,
+            Andamento: true,
+          },
+        });
 
-      if(!solicitacao){
-        return {status: 404, message: 'Usuário não encontrado', data: null}
+      if (!solicitacao) {
+        return { status: 404, message: 'Usuário não encontrado', data: null };
       }
-      return {status: 200, message: 'Usuário encontrado', data: solicitacao}
-      
-    }catch(error){
+      return { status: 200, message: 'Usuário encontrado', data: solicitacao };
+    } catch (error) {
       return error;
-    }finally{
+    } finally {
       this.prismaService.$disconnect;
     }
   }
 
   async pause(body: any, id: number, user: any) {
-    try{
-      const logDelete = await this.prismaService.nato_solicitacoes_certificado.findFirst({
-        where: {
-          id: id,
-        },
-        select: {
-          logDelete: true,
-        }
-      })
+    try {
+      const logDelete =
+        await this.prismaService.nato_solicitacoes_certificado.findFirst({
+          where: {
+            id: id,
+          },
+          select: {
+            logDelete: true,
+          },
+        });
 
       return await this.prismaService.nato_solicitacoes_certificado.update({
         where: {
@@ -923,23 +925,24 @@ export class SolicitacaoService {
         },
         data: {
           ...body,
-          ...(body.pause ? { statusAtendimento: false } : { statusAtendimento: true }),
+          ...(body.pause
+            ? { statusAtendimento: false }
+            : { statusAtendimento: true }),
           logDelete: `${logDelete.logDelete}\nO usuário: ${user?.nome}, id: ${user?.id} ${body.pause ? 'pausou' : 'retomou'} esse registro em: ${new Date().toLocaleDateString('pt-BR')} as ${new Date().toLocaleTimeString('pt-BR')}`,
         },
-
-      })
-    }catch(error){
-    return error;
-  }finally{
-    this.prismaService.$disconnect;
+      });
+    } catch (error) {
+      return error;
+    } finally {
+      this.prismaService.$disconnect;
+    }
   }
-}
 
   async deletesolicitacao(id: number, password: string) {
-    try{
-      const pass: any = password
+    try {
+      const pass: any = password;
 
-      if(pass !== process.env.PASSWORD){
+      if (pass !== process.env.PASSWORD) {
         throw new UnauthorizedException('Senha inválida');
       }
 
@@ -947,11 +950,10 @@ export class SolicitacaoService {
         where: {
           id: id,
         },
-      })
-
-    }catch(error){
+      });
+    } catch (error) {
       return error;
-    }finally{
+    } finally {
       this.prismaService.$disconnect;
     }
   }

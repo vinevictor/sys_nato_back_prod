@@ -80,7 +80,7 @@ export class FileController {
           `attachment; filename="${filename}"`,
         );
         return createReadStream(filePath).pipe(res);
-      } 
+      }
     } catch (error) {
       console.error('Error downloading file:', error);
       throw new NotFoundException('File not found');
@@ -131,10 +131,7 @@ export class FileController {
   }
 
   @Get('view/suporte/:filename')
-  async viewFile(
-    @Param('filename') filename: string,
-    @Res() res: Response,
-  ) {
+  async viewFile(@Param('filename') filename: string, @Res() res: Response) {
     return this.fileService.getFileSuporte(filename, res);
   }
 
@@ -160,7 +157,6 @@ export class FileController {
 
   @Delete('suporte/delete/:filename')
   async deleteFileSuporte(@Param('filename') filename: any) {
-
     try {
       const message = await this.fileService.deleteFileSuporte(filename);
       return message;
@@ -172,8 +168,6 @@ export class FileController {
       throw new InternalServerErrorException('Failed to delete file.');
     }
   }
-  
-  
+
   // visualização de arquivos pelo navegador pode ser adicionada aqui.
 }
-0

@@ -23,71 +23,70 @@ import { AuthGuard } from '../auth.guard';
 export class ChamadoController {
   constructor(private chamadoService: ChamadoService) {}
 
-  @Post('/create')
-  async Create(@Body() data: CreateChamadoDto): Promise<ReadByIdChamadoDto> {
-    console.log('🚀 ~ ChamadoController ~ Create ~ data:', data);
-    const response = await this.chamadoService.create(data);
-    console.log("🚀 ~ ChamadoController ~ Create ~ response:", response)
-    return response;
-  }
+  // @Post('/create')
+  // async Create(@Body() data: CreateChamadoDto): Promise<ReadByIdChamadoDto> {
+  //   console.log('🚀 ~ ChamadoController ~ Create ~ data:', data);
+  //   const response = await this.chamadoService.create(data);
+  //   console.log("🚀 ~ ChamadoController ~ Create ~ response:", response)
+  //   return response;
+  // }
 
-  @Get('/')
-  GetAll() {
-    try {
-      return this.chamadoService.getAll();
-    } catch (error) {
-      return error;
-    }
-  }
-  @Get('/count/total')
-  Count() {
-    return this.chamadoService.count();
-  }
+  // @Get('/')
+  // GetAll() {
+  //   try {
+  //     return this.chamadoService.getAll();
+  //   } catch (error) {
+  //     return error;
+  //   }
+  // }
+  // @Get('/count/total')
+  // Count() {
+  //   return this.chamadoService.count();
+  // }
 
+  // @Get('/:id')
+  // GetOne(@Param('id') id: number) {
+  //   try {
+  //     return this.chamadoService.getOne(id);
+  //   } catch (error) {
+  //     return error;
+  //   }
+  // }
 
-  @Get('/:id')
-  GetOne(@Param('id') id: number) {
-    try {
-      return this.chamadoService.getOne(id);
-    } catch (error) {
-      return error;
-    }
-  }
+  // @Get('/pesquisar')
+  // Search(@Query() pesquisa: any) {
+  //   try {
+  //     const all = pesquisa;
+  //     return this.chamadoService.search(all);
+  //   } catch (error) {
+  //     return error;
+  //   }
+  // }
 
-  @Get('/pesquisar')
-  Search(@Query() pesquisa: any) {
-    try {
-      const all = pesquisa;
-      return this.chamadoService.search(all);
-    } catch (error) {
-      return error;
-    }
-  }
+  // @Put('/atualizar/:id')
+  // Update(@Param('id') id: number, @Body() data: UpdateChamadoDto, @Req() req: any) {
+  //   try {
+  //     return this.chamadoService.update(id, data, req);
+  //   } catch (error) {
+  //     return error;
+  //   }
+  // }
 
-  @Put('/atualizar/:id')
-  Update(@Param('id') id: number, @Body() data: UpdateChamadoDto, @Req() req: any) {
-    try {
-      return this.chamadoService.update(id, data, req);
-    } catch (error) {
-      return error;
-    }
-  }
+  // @Put('/atualizar/resposta/:id')
+  // UdateResposta(@Param('id') id: number, @Req() req: any, @Body() data: UpdateChamadoDto){
+  //   try{
+  //     return this.chamadoService.updateResposta(id,data,req)
+  //   }catch(error){
+  //     return error
+  //   }
+  // }
 
-  @Put('/atualizar/resposta/:id')
-  UdateResposta(@Param('id') id: number, @Req() req: any, @Body() data: UpdateChamadoDto){
-    try{
-      return this.chamadoService.updateResposta(id,data,req)
-    }catch(error){
-      return error
-    }
-  }
-
-  @Delete('/delete/:id')
-  Delete(@Param('id') id: number) {
-    try {
-      return this.chamadoService.delete(id);
-    } catch (error) {
-      return error;
-    }
-  }
+  // @Delete('/delete/:id')
+  // Delete(@Param('id') id: number) {
+  //   try {
+  //     return this.chamadoService.delete(id);
+  //   } catch (error) {
+  //     return error;
+  //   }
+  // }
 }
